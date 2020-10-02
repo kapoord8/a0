@@ -99,8 +99,15 @@ public class TicTacToe {
 	 * @return true if the board is full, false otherwise
 	 */
 	public boolean isBoardFull() {
-		
-		return false;
+		boolean x = true;
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				if (this.board[i][j] == EMPTY) {
+					x = false;
+				}
+			}
+		}	
+		return x;
 		
 	}
 	
@@ -118,7 +125,7 @@ public class TicTacToe {
 			if (this.checkWinRow(row) || this.checkWinCol(col)
 					|| this.checkWinDiag()) {
 				this.winStatus = 1;
-			} else if (this.isBoardFull) {
+			} else if (this.isBoardFull()) {
 				this.winStatus = 2;
 			}
 		}
@@ -159,8 +166,10 @@ public class TicTacToe {
 	 * @return true if there is a diagonal win, false otherwise
 	 */	
 	private boolean checkWinDiag() {
-		
-		return false;
+		if (this.board[1][1] == EMPTY)
+			return false;
+		return (((this.board[0][2] == this.board[1][1]) && (this.board[0][2] == this.board[2][0])) ||
+			   ((this.board[0][0] == this.board[1][1]) && (this.board[2][2] == this.board[0][0])));
 				
 	}
 	
